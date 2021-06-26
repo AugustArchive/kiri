@@ -1,6 +1,5 @@
 .gradle
 .idea
-assets
 build
 docker
 
