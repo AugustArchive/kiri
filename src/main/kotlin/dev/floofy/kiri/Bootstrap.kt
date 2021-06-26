@@ -23,6 +23,7 @@ import dev.floofy.kiri.config.Environment
 import dev.floofy.kiri.config.dataModule
 import dev.floofy.kiri.endpoints.endpointsModule
 import dev.floofy.kiri.services.redis.IRedisService
+import dev.floofy.kiri.services.s3.IS3Service
 import dev.floofy.kiri.services.serviceModule
 import dev.floofy.kiri.struct.Endpoint
 import io.ktor.application.*
@@ -39,12 +40,12 @@ import io.micrometer.core.instrument.binder.jvm.JvmThreadMetrics
 import io.micrometer.core.instrument.binder.system.ProcessorMetrics
 import io.micrometer.prometheus.PrometheusConfig
 import io.micrometer.prometheus.PrometheusMeterRegistry
+import java.util.concurrent.TimeUnit
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 import org.koin.environmentProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.util.concurrent.TimeUnit
 
 object Bootstrap {
     private lateinit var service: NettyApplicationEngine
@@ -82,9 +83,13 @@ object Bootstrap {
         val koin = GlobalContext.get()
         val redis = koin.get<IRedisService>()
         val config = koin.get<Config>()
+        val s3 = koin.get<IS3Service>()
 
         logger.info("Connecting to Redis!")
         redis.connect()
+
+        logger.info("Connected to Redis, checking S3 bucket...")
+        s3.init()
 
         // Start up Ktor
         val environment = applicationEngineEnvironment {

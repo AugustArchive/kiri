@@ -23,4 +23,5 @@ import java.util.concurrent.CompletableFuture
 
 interface IS3Service {
     fun handle(stream: InputStream, contentType: String): CompletableFuture<Void>
+    fun init()
 }

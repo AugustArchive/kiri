@@ -75,7 +75,7 @@ class S3Service(private val config: S3Configuration): IS3Service {
     private lateinit var bucket: Bucket
     private lateinit var client: S3Client
 
-    fun init() {
+    override fun init() {
         logger.info("Initializing S3 client...")
         val builder = S3Client.builder()
             .credentialsProvider(StaticCredentialsProvider.create(
