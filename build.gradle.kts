@@ -22,7 +22,7 @@ import java.util.Date
 
 plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("com.diffplug.spotless") version "5.13.0"
+    id("com.diffplug.spotless") version "5.14.0"
     kotlin("plugin.serialization") version "1.5.10"
     kotlin("jvm") version "1.5.10"
     application
