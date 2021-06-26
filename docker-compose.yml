@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  tsubaki:
+    container_name: tsubaki
+    restart: always
+    build: .
+    depends_on:
+      - redis
+      - postgres
+      - prometheus
+    networks:
+      - default
+    ports:
+      - 17890:17890
+    volumes:
+    # Uncomment this and replace `<host>` with the config file path
+    # - <host>:/opt/kiri/config.yml:ro
+
+  redis:
+    container_name: redis
+    restart: always
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+      - kiri
+    volumes:
+      - redis:/data
+
+  # Uncomment this if you prefer to use a custom Redis config (./docker/redis)
+  # redis:
+  #   container_name: redis
+  #   restart: always
+  #   build: ./docker/redis
+  #   ports:
+  #     - 6379:6379
+  #   networks:
+  #     - kiri
+  #   volumes:
+  #     - redis:/data
+
+  prometheus:
+    container_name: prometheus
+    build: ./docker/prometheus
+    restart: always
+    networks:
+      - default
+
+volumes:
+  redis:
+
+networks:
+  kiri:
+    internal: true

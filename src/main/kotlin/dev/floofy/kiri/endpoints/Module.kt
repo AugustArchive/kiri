@@ -18,10 +18,13 @@
 
 package dev.floofy.kiri.endpoints
 
+import dev.floofy.kiri.endpoints.v1.GetPackageEndpoint
 import dev.floofy.kiri.struct.Endpoint
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val endpointsModule = module {
+    single { GetPackageEndpoint() } bind(Endpoint::class)
+    single { HealthEndpoint() } bind(Endpoint::class)
     single { MainEndpoint() } bind(Endpoint::class)
 }

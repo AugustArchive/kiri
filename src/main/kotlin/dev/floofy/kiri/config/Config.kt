@@ -26,7 +26,8 @@ data class Config(
     val metrics: MetricsConfig = MetricsConfig(),
     val redis: RedisConfig = RedisConfig(),
     val users: List<UsernamePasswordConfig> = listOf(),
-    val host: String? = null
+    val host: String? = null,
+    val s3: S3Config
 )
 
 @Serializable

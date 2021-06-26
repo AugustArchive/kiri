@@ -18,10 +18,23 @@
 
 package dev.floofy.kiri.services
 
+import dev.floofy.kiri.config.Config
 import dev.floofy.kiri.services.redis.IRedisService
 import dev.floofy.kiri.services.redis.RedisService
+import dev.floofy.kiri.services.s3.IS3Service
+import dev.floofy.kiri.services.s3.createS3Service
 import org.koin.dsl.module
 
 val serviceModule = module {
     single<IRedisService> { RedisService(get(), get()) }
+    single<IS3Service> {
+        val config = get<Config>()
+        createS3Service {
+            accessKey = config.s3.accessKey
+            secretKey = config.s3.secretKey
+            bucket = config.s3.bucket
+            region = config.s3.region
+            wasabi = config.s3.wasabi
+        }
+    }
 }

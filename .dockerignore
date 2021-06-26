@@ -1,0 +1,12 @@
+.gradle
+.idea
+assets
+build
+docker
+
+.gitignore
+config.yml
+docker-compose.yml
+gradle.properties
+gradlew.bat
+README.md

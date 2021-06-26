@@ -69,6 +69,9 @@ dependencies {
 
     // Metrics (Micrometer + Prometheus)
     implementation("io.micrometer:micrometer-registry-prometheus:1.7.0")
+
+    // S3 implementation
+    implementation("software.amazon.awssdk:s3:2.16.59")
 }
 
 tasks.register("generateMetadata") {
