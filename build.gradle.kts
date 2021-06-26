@@ -68,7 +68,7 @@ dependencies {
     implementation("io.lettuce:lettuce-core:6.1.3.RELEASE")
 
     // Metrics (Micrometer + Prometheus)
-    implementation("io.micrometer:micrometer-registry-prometheus:1.7.0")
+    implementation("io.micrometer:micrometer-registry-prometheus:1.7.1")
 
     // S3 implementation
     implementation("software.amazon.awssdk:s3:2.16.59")
