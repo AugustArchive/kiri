@@ -43,7 +43,7 @@ dependencies {
     // Koin (Dependency Injection)
     implementation("io.insert-koin:koin-ktor:3.1.1")
     implementation("io.insert-koin:koin-core-ext:3.0.2")
-    implementation("io.insert-koin:koin-logger-slf4j:3.0.1")
+    implementation("io.insert-koin:koin-logger-slf4j:3.1.1")
 
     // Logging
     implementation("ch.qos.logback:logback-classic:1.2.3")
