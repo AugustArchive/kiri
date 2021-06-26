@@ -24,7 +24,8 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val endpointsModule = module {
-    single { GetPackageEndpoint() } bind(Endpoint::class)
+    single { GetPackageEndpoint(get(), get()) } bind(Endpoint::class)
+    single { PutObjectsEndpoint() } bind(Endpoint::class)
     single { HealthEndpoint() } bind(Endpoint::class)
     single { MainEndpoint() } bind(Endpoint::class)
 }

@@ -52,7 +52,7 @@ object Bootstrap {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     init {
-        Runtime.getRuntime().addShutdownHook(Thread(::shutdown))
+        Runtime.getRuntime().addShutdownHook(Thread(::shutdown).apply { name = "Kiri-ShutdownThread" })
     }
 
     private fun shutdown() {
@@ -60,7 +60,7 @@ object Bootstrap {
 
         val redis = GlobalContext.get().get<IRedisService>()
         redis.close()
-        service.stop(1, 1, TimeUnit.SECONDS)
+        service.stop(0, 0, TimeUnit.MILLISECONDS)
     }
 
     @JvmStatic
@@ -149,6 +149,8 @@ object Bootstrap {
         }
 
         logger.info("Ktor has been booted up.")
-        service = embeddedServer(Netty, environment).start(wait = true)
+        service = embeddedServer(Netty, environment)
+
+        service.start(wait = true)
     }
 }

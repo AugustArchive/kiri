@@ -16,25 +16,21 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.floofy.kiri
+package dev.floofy.kiri.config.objects.responses
 
-import kotlinx.serialization.json.Json
-import nl.adaptivity.xmlutil.serialization.XML
-import org.koin.dsl.module
+import dev.floofy.kiri.config.objects.LibraryModule
+import dev.floofy.kiri.config.objects.LibraryPOM
+import dev.floofy.kiri.config.objects.MavenMetadataPOM
+import kotlinx.serialization.Serializable
 
-val kiriModule = module {
-    single {
-        XML {
-            autoPolymorphic = true
-            repairNamespaces = true
-            unknownChildHandler = { _, _, _, _ -> }
-        }
-    }
+@Serializable
+data class GetPackageResponse(
+    val versions: Map<String, LibraryVersion>,
+    val metadata: MavenMetadataPOM
+)
 
-    single {
-        Json {
-            ignoreUnknownKeys = true
-            encodeDefaults = true
-        }
-    }
-}
+@Serializable
+data class LibraryVersion(
+    val module: LibraryModule,
+    val pom: LibraryPOM
+)

@@ -23,7 +23,7 @@ import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
 
-class HealthEndpoint: Endpoint("/", HttpMethod.Get) {
+class HealthEndpoint: Endpoint("/health", HttpMethod.Get) {
     override suspend fun call(call: ApplicationCall) {
         call.respondText("OK!")
     }

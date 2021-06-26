@@ -16,25 +16,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.floofy.kiri
+package dev.floofy.kiri.endpoints
 
-import kotlinx.serialization.json.Json
-import nl.adaptivity.xmlutil.serialization.XML
-import org.koin.dsl.module
+import dev.floofy.kiri.struct.Endpoint
+import io.ktor.application.*
+import io.ktor.http.*
+import io.ktor.response.*
 
-val kiriModule = module {
-    single {
-        XML {
-            autoPolymorphic = true
-            repairNamespaces = true
-            unknownChildHandler = { _, _, _, _ -> }
-        }
-    }
-
-    single {
-        Json {
-            ignoreUnknownKeys = true
-            encodeDefaults = true
-        }
+class PutObjectsEndpoint: Endpoint("/publish/{...params}", HttpMethod.Put) {
+    override suspend fun call(call: ApplicationCall) {
+        call.respondText("hi world.")
     }
 }
