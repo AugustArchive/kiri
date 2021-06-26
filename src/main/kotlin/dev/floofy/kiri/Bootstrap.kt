@@ -44,10 +44,23 @@ import org.koin.core.context.startKoin
 import org.koin.environmentProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.util.concurrent.TimeUnit
 
 object Bootstrap {
     private lateinit var service: NettyApplicationEngine
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
+
+    init {
+        Runtime.getRuntime().addShutdownHook(Thread(::shutdown))
+    }
+
+    private fun shutdown() {
+        logger.warn("Requested to shutdown.")
+
+        val redis = GlobalContext.get().get<IRedisService>()
+        redis.close()
+        service.stop(1, 1, TimeUnit.SECONDS)
+    }
 
     @JvmStatic
     fun main(args: Array<String>) {
