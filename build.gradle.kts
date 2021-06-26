@@ -22,7 +22,7 @@ import java.util.Date
 
 plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("com.diffplug.spotless") version "5.13.0"
+    id("com.diffplug.spotless") version "5.14.0"
     kotlin("plugin.serialization") version "1.5.10"
     kotlin("jvm") version "1.5.10"
     application
@@ -42,7 +42,7 @@ dependencies {
 
     // Koin (Dependency Injection)
     implementation("io.insert-koin:koin-ktor:3.0.1")
-    implementation("io.insert-koin:koin-core-ext:3.0.1")
+    implementation("io.insert-koin:koin-core-ext:3.0.2")
     implementation("io.insert-koin:koin-logger-slf4j:3.0.1")
 
     // Logging
@@ -68,10 +68,10 @@ dependencies {
     implementation("io.lettuce:lettuce-core:6.1.3.RELEASE")
 
     // Metrics (Micrometer + Prometheus)
-    implementation("io.micrometer:micrometer-registry-prometheus:1.7.0")
+    implementation("io.micrometer:micrometer-registry-prometheus:1.7.1")
 
     // S3 implementation
-    implementation("software.amazon.awssdk:s3:2.16.59")
+    implementation("software.amazon.awssdk:s3:2.16.91")
 }
 
 tasks.register("generateMetadata") {
