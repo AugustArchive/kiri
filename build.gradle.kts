@@ -55,7 +55,7 @@ dependencies {
     implementation("io.github.pdvrieze.xmlutil:serialization-jvm:0.82.0")
 
     // Ktor
-    implementation("io.ktor:ktor-client-serialization:1.6.0")
+    implementation("io.ktor:ktor-client-serialization:1.6.1")
     implementation("io.ktor:ktor-metrics-micrometer:1.6.0")
     implementation("io.ktor:ktor-serialization:1.6.0")
     implementation("io.ktor:ktor-server-netty:1.6.0")
