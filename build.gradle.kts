@@ -59,7 +59,7 @@ dependencies {
     implementation("io.ktor:ktor-metrics-micrometer:1.6.1")
     implementation("io.ktor:ktor-serialization:1.6.1")
     implementation("io.ktor:ktor-server-netty:1.6.0")
-    api("io.ktor:ktor-server-core:1.6.0")
+    api("io.ktor:ktor-server-core:1.6.1")
 
     // Config (YML)
     implementation("com.charleskorn.kaml:kaml:0.34.0")
